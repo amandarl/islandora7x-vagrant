@@ -21,6 +21,7 @@ one way to use vagrant to create an Islandora 7.x-1.8 virtual machine using Virt
 cd [project directory name]
 git clone https://bitbucket.org/ed_f/i7x1x.git [optional preferred directory name]
 cd  [directory name created from previous command]
+vagrant box add geerlingguy/centos7 (required for initial run if using CentOS 7)
 vagrant box update *(optional step)*
 vagrant up
 ```
