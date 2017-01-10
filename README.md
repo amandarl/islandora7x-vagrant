@@ -27,7 +27,13 @@ vagrant up
 ## Setting Environment Variables ##
 
 ### Linux ###
-* export ISLANDORA_VAGRANT_CPUS="2"
+
+```
+#!bash
+
+export ISLANDORA_VAGRANT_CPUS="2"
+```
+
 ### OS X ###
 * export ISLANDORA_VAGRANT_CPUS="2"
 ### Windows ###
