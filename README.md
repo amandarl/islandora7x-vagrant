@@ -21,7 +21,7 @@ one way to use vagrant to create an Islandora 7.x-1.8 virtual machine using Virt
 cd [project directory name]
 git clone https://bitbucket.org/ed_f/i7x1x.git [optional preferred directory name]
 cd  [directory name created from previous command]
-vagrant box add geerlingguy/centos7 (required for initial run if using CentOS 7)
+
 vagrant box update *(optional step)*
 vagrant up
 ```
@@ -34,3 +34,23 @@ vagrant up
 ```export ISLANDORA_VAGRANT_CPUS="2"```
 #### Windows ####
 ```set %ISLANDORA_VAGRANT_CPUS="2"```
+
+
+# Notes
+
+## Errors
+
+### required for initial run if using CentOS 7
+
+```
+$ vagrant box update
+virtualBox guest OS -  geerlingguy/centos7  inital value was CentOS7
+virtualBox guest CPUs -  2
+==> default: Box 'geerlingguy/centos7' not installed, can't check for updates.
+```
+
+substitute the following
+```
+vagrant box add geerlingguy/centos7 
+vagrant box update
+```
