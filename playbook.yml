@@ -1,0 +1,48 @@
+---
+- hosts: localhost
+  become: yes
+
+
+  tasks:
+    # Install EPEL repo.
+    - block: 
+        - yum: name=epel-release state=present
+      when: ansible_os_family == 'RedHat'
+      become: yes
+
+    - name: install common packages
+      package:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - "git-core"
+        - "ntp"
+        - "ntpdate"
+        - "openssh-server"
+      become: yes
+
+#  yum test
+    - name: Ensure NTP is running.
+      service: name=ntpd state=started enabled=yes
+
+# Install and configure Apache on Debian/Ubuntu hosts.
+    - block:
+         - apt: name=apache2 state=present
+         - template: src=httpd.conf.j2 dest=/etc/apache2/apache2.conf
+         - service: name=apache2 state=started enabled=yes
+      when: ansible_os_family == 'Debian'
+      become: yes
+
+# example of Ansible Block 
+    - block:
+        - name: Script to connect the app to a monitoring service.
+          script: monitoring-connect.sh
+      rescue:
+        - name: This will only run in case of an error in the block.
+          debug: msg="There was an error in the block."
+      always:
+        - name: This will always run, no matter what.
+          debug: msg="This always executes."
+
+
+
