@@ -46,14 +46,9 @@ vagrant up
 
 ```
 #!php
-
 $ vagrant box update
-virtualBox guest OS -  geerlingguy/centos7  inital value was CentOS7
-virtualBox guest CPUs -  2
 ==> default: Box 'geerlingguy/centos7' not installed, can't check for updates
-
 ```
-
 
 substitute the following:
 ```
