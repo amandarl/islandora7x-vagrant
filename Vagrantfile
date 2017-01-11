@@ -7,7 +7,7 @@ $memory                = ENV.fetch("ISLANDORA_VAGRANT_MEMORY", "3048")
 $hostname              = ENV.fetch("ISLANDORA_VAGRANT_HOSTNAME", "islandora")
 $virtualBoxDescription = ENV.fetch("ISLANDORA_VAGRANT_VIRTUALBOXDESCRIPTION", "Islandora\nmemory: " + $memory + "\ncreated: " + $timeStamp)
 $virtualBoxName        = ENV.fetch("ISLANDORA_VAGRANT_VIRTUALBOXNAME", "Islandora-" + $timeStamp)
-#   $virtualBoxOsRaw       = ENV.fetch("ISLANDORA_VAGRANT_OS", "ubuntu")
+# $virtualBoxOsRaw       = ENV.fetch("ISLANDORA_VAGRANT_OS", "ubuntu")
 $virtualBoxOsRaw       = ENV["ISLANDORA_VAGRANT_OS"]
 $virtualBoxOsLC        = $virtualBoxOsRaw.downcase unless $virtualBoxOsRaw.nil?
 
@@ -22,13 +22,17 @@ if ( $virtualBoxOsLC  == 'centos/7' or $virtualBoxOsLC  == 'centos7')
          $virtualBoxOs = "ubuntu/trusty64"
 end
 
-puts "virtualBox guest OS -  #{$virtualBoxOs}  inital value was #{$virtualBoxOsRaw} "
-puts "virtualBox guest CPUs -  #{$cpus}"
+#puts "virtualBox guest OS -  #{$virtualBoxOs}  inital value was #{$virtualBoxOsRaw} "
+#puts "virtualBox guest CPUs -  #{$cpus}"
+
+
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+
+
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -66,17 +70,9 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--cpus", $cpus]
       vb.customize ["modifyvm", :id, "--description", $virtualBoxDescription]
       vb.customize ["modifyvm", :id, "--name", $virtualBoxName]
+      # https://github.com/chef/bento/issues/688#issuecomment-252404560
+      vb.customize ["modifyvm", :id, "--cableconnected1", "on"]   
   end
-
-
- #    sudo yum install -y epel-release
- #    sudo yum repolist
- #    sudo yum install dkms kernel-devel
- #    sudo yum 
- #    sudo yum -y groupinstall "Development Tools"
-
-
-
 
   # Setup the shared folder
     shared_dir = "/home/vagrant"
