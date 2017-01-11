@@ -54,4 +54,5 @@ substitute the following:
 ```
 vagrant box add geerlingguy/centos7 
 vagrant box update
+vagrant up
 ```

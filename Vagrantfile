@@ -24,16 +24,10 @@ if ( $virtualBoxOsLC  == 'centos/7' or $virtualBoxOsLC  == 'centos7')
          $virtualBoxOs = "ubuntu/trusty64"
 end
 
-#puts "virtualBox guest OS -  #{$virtualBoxOs}  inital value was #{$virtualBoxOsRaw} "
-#puts "virtualBox guest CPUs -  #{$cpus}"
-
-
-
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
-
 
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
@@ -52,9 +46,6 @@ Vagrant.configure("2") do |config|
   #timezone_suffix = offset >= 0 ? "+#{offset.to_s}" : "#{offset.to_s}"
   #timezone = 'Etc/GMT' + timezone_suffix
   #config.vm.provision :shell, :inline => "sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/" + timezone + " /etc/localtime", run: "always"
-
-
-
 
   config.vm.provider "virtualbox" do |v|
     v.name = $virtualBoxName
@@ -99,8 +90,8 @@ Vagrant.configure("2") do |config|
 
   end
 
-
-
+#puts "virtualBox guest OS -  #{$virtualBoxOs}  inital value was #{$virtualBoxOsRaw} "
+#puts "virtualBox guest CPUs -  #{$cpus}"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
