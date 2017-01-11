@@ -21,9 +21,14 @@
         - "openssh-server"
       become: yes
 
-#  yum test
-    - name: Ensure NTP is running.
+##  apt approach
+    - name: Ensure NTP is running on apt based distros.
+      service: name=ntp state=started enabled=yes
+      when: ansible_os_family == 'Debian'
+#  yum approach
+    - name: Ensure NTP is running on yum based distros.
       service: name=ntpd state=started enabled=yes
+      when: ansible_os_family == 'RedHat'
 
 # Install and configure Apache on Debian/Ubuntu hosts.
     - block:
