@@ -14,8 +14,8 @@ $virtualBoxOsLC        = $virtualBoxOsRaw.downcase unless $virtualBoxOsRaw.nil?
 if ( $virtualBoxOsLC  == 'centos/7' or $virtualBoxOsLC  == 'centos7')
 	 # virtualBox guest addiions installation needs verification ; rsync not found on Win7 
 	 # http://stackoverflow.com/questions/34176041/vagrant-with-virtualbox-on-windows10-rsync-could-not-be-found-on-your-path
-         #$virtualBoxOs = "centos/7" 
-         $virtualBoxOs = "geerlingguy/centos7"
+         $virtualBoxOs = "centos/7" 
+         #$virtualBoxOs = "geerlingguy/centos7"
     elsif (  $virtualBoxOsLC == 'rhel7')  # https://ttboj.wordpress.com/2015/02/23/building-rhel-vagrant-boxes-with-vagrant-builder/
          $virtualBoxOs = "rhel-7.2"
     elsif ( $virtualBoxOsLC == 'trusty64')
@@ -78,10 +78,11 @@ Vagrant.configure("2") do |config|
 
   # Setup the shared folder
     shared_dir = "/home/vagrant"
-    config.vm.synced_folder "../", shared_dir + "/islandora"
+    config.vm.synced_folder "../", shared_dir + "/islandora", type: "virtualbox" 
+    # OS X - config.vm.synced_folder "../", shared_dir + "/islandora"
 
   # scripts
-    #works on Ubuntu ----- config.vm.provision :shell, inline: "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile", :privileged =>false
+    #works on Ubuntu guest not CentOS/7 ----- config.vm.provision :shell, inline: "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile", :privileged =>false
     #    config.vm.provision :shell, path: "./scripts/bootstrap.sh", :args => shared_dir
     #    config.vm.provision :shell, path: "./scripts/post-install.sh", :args => shared_dir
     if File.exist?("./scripts/custom.sh") then
@@ -94,13 +95,10 @@ Vagrant.configure("2") do |config|
     ansible.verbose   = "-vvvv"
     ansible.install   = true
     ansible.sudo      = true
-    ansible.limit     = "all"
-    ansible.playbook  = "playbook.yml"
+    #ansible.limit     = "all"
+    ansible.playbook  = "playbook.yml"   # playbook is not running using vagrant 1.8.6 or 1.9.1
 
   end
-
-
-
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
