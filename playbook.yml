@@ -6,7 +6,8 @@
   tasks:
     # Install EPEL repo.
     - block: 
-        - yum: name=epel-release state=present
+        - name: add epel repo for yum
+          yum: name=epel-release state=present
       when: ansible_os_family == 'RedHat'
       become: yes
 
@@ -32,9 +33,11 @@
 
 # Install and configure Apache on Debian/Ubuntu hosts.
     - block:
-         - apt: name=apache2 state=present
+         - name: start Apache Webserver
+           apt: name=apache2 state=present
          #- template: src=httpd.conf.j2 dest=/etc/apache2/apache2.conf
-         - service: name=apache2 state=started enabled=yes
+         - name: enable webserver to start on boot
+           service: name=apache2 state=started enabled=yes
       when: ansible_os_family == 'Debian'
       become: yes
 
