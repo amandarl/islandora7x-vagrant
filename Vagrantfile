@@ -14,8 +14,8 @@ $virtualBoxOsLC        = $virtualBoxOsRaw.downcase unless $virtualBoxOsRaw.nil?
 if ( $virtualBoxOsLC  == 'centos/7' or $virtualBoxOsLC  == 'centos7')
 	 # virtualBox guest addiions installation needs verification ; rsync not found on Win7 
 	 # http://stackoverflow.com/questions/34176041/vagrant-with-virtualbox-on-windows10-rsync-could-not-be-found-on-your-path
-         $virtualBoxOs = "centos/7" 
-         #$virtualBoxOs = "geerlingguy/centos7"
+         #$virtualBoxOs = "centos/7" 
+         $virtualBoxOs = "geerlingguy/centos7"
     elsif (  $virtualBoxOsLC == 'rhel7')  # https://ttboj.wordpress.com/2015/02/23/building-rhel-vagrant-boxes-with-vagrant-builder/
          $virtualBoxOs = "rhel-7.2"
     elsif ( $virtualBoxOsLC == 'trusty64')

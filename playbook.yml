@@ -33,7 +33,7 @@
 # Install and configure Apache on Debian/Ubuntu hosts.
     - block:
          - apt: name=apache2 state=present
-         - template: src=httpd.conf.j2 dest=/etc/apache2/apache2.conf
+         #- template: src=httpd.conf.j2 dest=/etc/apache2/apache2.conf
          - service: name=apache2 state=started enabled=yes
       when: ansible_os_family == 'Debian'
       become: yes
