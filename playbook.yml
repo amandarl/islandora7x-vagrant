@@ -16,6 +16,8 @@
         name: "{{ item }}"
         state: latest
       with_items:
+        - "vim"
+        - "curl"
         - "git-core"
         - "ntp"
         - "ntpdate"
