@@ -5,7 +5,7 @@ one way to use vagrant to create an Islandora 7.x-1.8 virtual machine using Virt
 # How do I get set up? #
 
 ## Dependencies ##
-     * install Git, Vagrant, and VirtualBox
+     * install Git, Vagrant 1.9.x, and VirtualBox 5.x
 
 ## Deployment Instructions ##
 * set environmental variables 
