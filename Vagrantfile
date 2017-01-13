@@ -83,16 +83,24 @@ Vagrant.configure("2") do |config|
   # Run Ansible from the Vagrant VM
   config.vm.provision "ansible_local" do |ansible|
     #ansible.verbose  = true
-    ansible.provisioning_path   = "/vagrant"
-    ansible.verbose   = "vvv"
-    ansible.install   = "true"
-    ansible.sudo      = "true"
-    ansible.limit     = "all"
-    ansible.playbook  = "playbook.yml"              # playbook is not running using vagrant 1.8.6 or 1.9.1
+    ansible.verbose = "vvv"
+    #ansible.sudo      = "true"
+    #ansible.provisioning_path   = "/vagrant"
+    #ansible.limit     = "all"
+    ansible.install = "true"
+    ansible.sudo = true
+    ansible.playbook = "playbook.yml"              # playbook is not running using vagrant 1.8.6 or 1.9.1
     #ansible.playbook  = "./ansible/playbook.yml"   # playbook is not running using vagrant 1.8.6 or 1.9.1
     #ansible.playbook  = "/vagrant/playbook.yml"    # playbook is not running using vagrant 1.8.6 or 1.9.1
 
   end
+
+  config.vm.provision "shell", privileged: false, inline: <<-EOF
+    echo " "
+    echo "Vagrant Box provisioned!"
+    echo "Local server address is http://"
+  EOF
+  
 
 #puts "virtualBox guest OS -  #{$virtualBoxOs}  inital value was #{$virtualBoxOsRaw} "
 #puts "virtualBox guest CPUs -  #{$cpus}"
