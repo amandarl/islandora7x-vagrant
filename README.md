@@ -25,6 +25,9 @@ cd  [directory name created from previous command]
 vagrant box update *(optional step)*
 vagrant up
 
+
+vagrant ssh
+sudo ansible-playbook /vagrant/playbook.yml
 ```
 ### Setting Environment Variables ###
 
