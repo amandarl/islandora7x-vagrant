@@ -4,6 +4,15 @@
 
 
   tasks:
+    # Load a variable file based on the OS type, or a default if not found.
+    - include_vars: "{{ item }}"
+      with_first_found:
+        - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version | int}}.yml"
+        - "vars/{{ ansible_distribution }}.yml"
+        - "vars/{{ ansible_os_family }}.yml"
+        - "vars/default.yml"
+      when: apache_package_name is not defined or apache_service_name is not defined
+
     # Install EPEL repo.
     - block: 
         - name: add epel repo for yum
@@ -24,6 +33,16 @@
         - "openssh-server"
       become: yes
 
+    - name: Install Apache
+      package: 
+        name: "{{ apache_package_name }}"
+        state: latest
+
+    - name: Enable Apache service
+      service: name={{ apache_service_name }} state=started enabled=yes
+      tags: packages
+
+
 ##  apt approach
     - name: Ensure NTP is running on apt based distros.
       service: name=ntp state=started enabled=yes
@@ -43,6 +62,14 @@
       when: ansible_os_family == 'Debian'
       become: yes
 
+    - block:
+         - name: start MySql
+           apt: name=mysql-server state=present
+         - name: enable webserver to start on boot
+           service: name=mysql state=started enabled=yes
+      when: ansible_os_family == 'Debian'
+      become: yes
+
 # example of Ansible Block 
     - block:
         - name: Script to connect the app to a monitoring service.
@@ -53,6 +80,3 @@
       always:
         - name: This will always run, no matter what.
           debug: msg="This always executes."
-
-
-
