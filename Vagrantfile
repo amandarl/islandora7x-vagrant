@@ -54,9 +54,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.hostname = $hostname
 
-  config.vm.network :forwarded_port, guest: 8080, host: 9080 # Tomcat
+  config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
   config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL
-  config.vm.network :forwarded_port, guest: 8000, host: 8000 # Apache
+  config.vm.network :forwarded_port, guest: 80, host: 8000 # Apache
 
   config.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", $memory]
