@@ -72,7 +72,7 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder "../", shared_dir + "/islandora", type: "virtualbox" 
     # OS X - config.vm.synced_folder "../", shared_dir + "/islandora"
     if Dir.exist?("../downloads") then
-      config.vm.synced_folder "../downloads", "/downloads", type: "virtualbox" 
+      config.vm.synced_folder "../downloads", "/tmp/downloads", type: "virtualbox" 
     end
 
   # scripts
