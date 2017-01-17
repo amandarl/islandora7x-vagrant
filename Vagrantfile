@@ -93,8 +93,8 @@ Vagrant.configure("2") do |config|
     ansible.install = "true"
     ansible.sudo = true
     #ansible.playbook = "playbook.yml"              # playbook is not running using vagrant 1.8.6 or 1.9.1
-    ansible.playbook  = "./ansible/playbook.yml"   # playbook is not running using vagrant 1.8.6 or 1.9.1
-    #ansible.playbook  = "/vagrant/playbook.yml"    # playbook is not running using vagrant 1.8.6 or 1.9.1
+    #ansible.playbook  = "./ansible/playbook.yml"   # playbook is not running using vagrant 1.8.6 or 1.9.1
+    ansible.playbook  = "/vagrant/ansible/playbook.yml"    # playbook is not running using vagrant 1.8.6 or 1.9.1
 
   end
 
