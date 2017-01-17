@@ -71,7 +71,9 @@ Vagrant.configure("2") do |config|
     shared_dir = "/home/vagrant"
     config.vm.synced_folder "../", shared_dir + "/islandora", type: "virtualbox" 
     # OS X - config.vm.synced_folder "../", shared_dir + "/islandora"
-    config.vm.synced_folder "../downloads", "/downloads", type: "virtualbox" 
+    if Dir.exist?("../downloads") then
+      config.vm.synced_folder "../downloads", "/downloads", type: "virtualbox" 
+    end
 
   # scripts
     #works on Ubuntu guest not CentOS/7 ----- config.vm.provision :shell, inline: "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile", :privileged =>false
