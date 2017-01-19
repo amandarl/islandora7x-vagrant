@@ -101,7 +101,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", privileged: false, inline: <<-EOF
     echo " "
     echo "Vagrant Box provisioned!"
-    echo "Local server address is http://"
+    echo "Local server address is http://localhost and http://localhost:8080"
   EOF
   
 
