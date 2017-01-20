@@ -20,7 +20,7 @@ one way to use vagrant to create an Islandora 7.x-1.8 virtual machine using Virt
 ```
 #!bash
 cd [project directory name]
-git clone https://bitbucket.org/ed_f/i7x1x.git [optional preferred directory name]
+git clone https://github.com/edf/islandora7x-vagrant [optional preferred directory name]
 cd  [directory name created from previous command]
 vagrant box update *(optional step)*
 vagrant up
