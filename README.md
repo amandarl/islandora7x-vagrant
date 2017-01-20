@@ -1,6 +1,6 @@
 # README #
 
-one way to use vagrant to create an Islandora 7.x-1.8 virtual machine using VirtualBox setting the Linux distribution at initial startup
+one way to use vagrant to create an Islandora 7.x-1.8 virtual machine using VirtualBox setting the Linux distribution at initial startup. The latest available Ansible version is automatically installed.
 
 # How do I get set up? #
 
@@ -24,11 +24,20 @@ git clone https://github.com/edf/islandora7x-vagrant [optional preferred directo
 cd  [directory name created from previous command]
 vagrant box update *(optional step)*
 vagrant up
-
-
 vagrant ssh
-sudo ansible-playbook /vagrant/playbook.yml
 ```
+then for testing VM
+```
+sudo ansible-playbook /vagrant/playbook.yml 
+```
+or run the Ansible based Islandora install
+
+```
+git clone https://github.com/edf/islandora-7.x-enterprise-ansible.git yourDirNameHere
+cd yourDirNameHere
+sudo ansible-playbook install-islandora-7.x-enterprise.yaml
+```
+
 ### Setting Environment Variables ###
 
 #### Linux or Git Bash on Windows ####
