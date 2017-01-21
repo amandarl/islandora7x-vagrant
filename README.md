@@ -38,7 +38,7 @@ cd yourDirNameHere
 sudo ansible-playbook install-islandora-7.x-enterprise.yaml
 ```
 
-### Setting Environment Variables ###
+### examples of Setting Environment Variables on host computer ###
 
 #### Linux or Git Bash on Windows ####
 ```export ISLANDORA_VAGRANT_CPUS="2"```
