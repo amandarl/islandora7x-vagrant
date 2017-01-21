@@ -1,6 +1,6 @@
 # README #
 
-one way to use vagrant to create an Islandora 7.x-1.8 virtual machine using VirtualBox setting the Linux distribution at initial startup. The latest available Ansible version is automatically installed.
+one way to use vagrant to create an Islandora 7.x-1.8 virtual machine using VirtualBox setting the Linux distribution at initial startup. CentOS 7 and Ubuntu 14.04 (Trusty) are inital distributions implemented. The latest available Ansible version for the distro is automatically installed.
 
 # How do I get set up? #
 
@@ -47,14 +47,11 @@ sudo ansible-playbook install-islandora-7.x-enterprise.yaml
 #### Windows ####
 ```set %ISLANDORA_VAGRANT_CPUS%="2"```
 
-
 # Notes
 
-## Errors
+## Common Errors
 
 ### required for initial run if using CentOS 7
-
-
 
 ```
 #!php
